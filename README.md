@@ -79,6 +79,13 @@ fbtest　（描画テスト）
 
 このあたりのページが参考になります。
 
+```
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
+cd fbtest
+make
+./fbtest -f /dev/fb1
+```
+
 自分のコードからアクセスする場合は、
 
 フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
@@ -86,13 +93,6 @@ fbtest　（描画テスト）
 今回は、640x480x16bit の配列になり、BGR 16bit で格納されてます
 
 web の情報をご参照ください。
-
-```
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
-cd fbtest
-make
-./fbtest -f /dev/fb1
-```
 
 
 # 補足
