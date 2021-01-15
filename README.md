@@ -38,6 +38,9 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 
 ```
+cd
+git clone https://github.com/devemin/fbtft
+cd fbtft
 sudo make -j4
 ```
 
