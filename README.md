@@ -70,13 +70,20 @@ fbtest　（描画テスト）
 git clone https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
 cd fbtest
 make
-./fbtest --fbdev /dev/fb1
+./fbtest -f /dev/fb1
 ```
 
 
 #補足
 
 ```
+#frame buffer 何があるか確認
+ls /dev/fb*
+#/dev/fb0 は基本的にGUI(startXではじまるX11環境)
+#/dev/fb1 に今回のマジョカアイリス液晶がfbtftによって登録される
+#GUI なしのCUI コンソールログインだと、それが番号ずれることもある
+
+
 #fbtft関連のドライバの読み込み状況確認
 lsmod | grep fb
 
@@ -85,8 +92,14 @@ sudo insmod xxx
 #ドライバ１個ずつアンロード
 sudo rmmod xxx
 
+#カーネルバージョン確認
+uname -r
+
 ```
 
+insmod はモジュール（ドライバ）を１個ずつロードします。
+
+modprobe はモジュールをうまいこと関連のものを一緒にまとめてロードしてくれます。
 
 
 以下、original README
