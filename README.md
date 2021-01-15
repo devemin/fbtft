@@ -1,8 +1,8 @@
-#for maji majo Iris LCD
+#Driver for maji majo Iris LCD (mod)
 
-マジマジョアイリス用のmod です。
+マジマジョアイリス用のmod ドライバーです。
 
-（ライセンス関係まだチェックしてないです・・・）
+（TODO: ライセンスGPLとMIT が混ざってるのチェック）
 
 
 #HOWTO
