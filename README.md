@@ -3,6 +3,10 @@
 マジマジョアイリスLCD の ラズパイ用 mod ドライバーです。
 
 
+# 確認環境
+
+ラズパイ4 8gB /  2021-1-11 released Raspberry Pi OS
+
 # HOWTO
 ```
 sudo apt update 
