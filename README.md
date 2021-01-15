@@ -18,7 +18,7 @@ sudo /usr/bin/rpi-source -q --tag-update
 sudo rpi-source
 ```
 
-/root/内にLinux カーネルソース一式が準備されます。
+/root/内にLinux カーネルソース一式が、サクサクッと準備されます。
 
 また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
 
