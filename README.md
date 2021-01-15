@@ -20,6 +20,14 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 #マジョカアイリスLCD接続
 
+
+#ドライバをビルド
+
+```
+sudo make -j4
+```
+
+
 ```
 #ドライバをロード
 ./majiinsmod.sh
