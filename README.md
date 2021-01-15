@@ -1,9 +1,9 @@
-#Driver for maji majo Iris LCD (mod)
+# Driver for maji majo Iris LCD (mod)
 
 マジマジョアイリス用のmod ドライバーです。
 
 
-#HOWTO
+# HOWTO
 ```
 sudo apt update 
 sudo apt-get install bc bison flex libssl-dev libncurses5-dev
@@ -24,13 +24,13 @@ sudo rpi-source
 https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 
-#マジョカアイリスLCD接続
+# マジョカアイリスLCD接続
 
 配線は、majiinsmod.sh 内のgpiosというところを参照。CSは2でなくGNDへ (なぜかHighになってしまって通信できなくなるのでひとまずGNDへ。確認中)
 
  gpios=reset:4,dc:3,wr:23,cs:2,db00:5,db01:6,db02:13,db03:19,db04:26,db05:12,db06:16,db07:20
 
-#ドライバをビルド
+# ドライバをビルド
 
 今回、fb_s6d1121.c　というファイルをマジョカアイリス液晶用に改造させてもらいました。（パラメータベタ書き許して・・・）
 
@@ -55,7 +55,7 @@ sudo make -j4
 ./majirmmod.sh
 ```
 
-#フレームバッファ使い方
+# フレームバッファ使い方
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
 
@@ -78,7 +78,7 @@ make
 ```
 
 
-#補足
+# 補足
 
 ```
 #frame buffer 何があるか確認
