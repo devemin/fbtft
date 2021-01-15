@@ -49,12 +49,12 @@ default: .config
 .config:
 	grep config Kconfig | cut -d' ' -f2 | sed 's@^@CONFIG_@; s@$$@=m@' > .config
 
-install:
-	$(MAKE) -C $(KDIR) M=$$PWD modules_install
+#install:
+#	$(MAKE) -C $(KDIR) M=$$PWD modules_install
 
 
 clean:
-	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions \
+	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c *.mod .tmp_versions \
 	       modules.order Module.symvers
 
 endif

@@ -370,16 +370,17 @@ void fbtft_reset(struct fbtft_par *par)
 void fbtft_update_display(struct fbtft_par *par, unsigned start_line, unsigned end_line)
 {
 	size_t offset, len;
-	struct timespec ts_start, ts_end, ts_fps, ts_duration;
-	long fps_ms, fps_us, duration_ms, duration_us;
+	ktime_t ts_start, ts_end;
 	long fps, throughput;
 	bool timeit = false;
 	int ret = 0;
 
-	if (unlikely(par->debug & (DEBUG_TIME_FIRST_UPDATE | DEBUG_TIME_EACH_UPDATE))) {
-		if ((par->debug & DEBUG_TIME_EACH_UPDATE) || \
-				((par->debug & DEBUG_TIME_FIRST_UPDATE) && !par->first_update_done)) {
-			getnstimeofday(&ts_start);
+	if (unlikely(par->debug & (DEBUG_TIME_FIRST_UPDATE |
+			DEBUG_TIME_EACH_UPDATE))) {
+		if ((par->debug & DEBUG_TIME_EACH_UPDATE) ||
+		    ((par->debug & DEBUG_TIME_FIRST_UPDATE) &&
+		    !par->first_update_done)) {
+			ts_start = ktime_get();
 			timeit = true;
 		}
 	}
@@ -387,25 +388,27 @@ void fbtft_update_display(struct fbtft_par *par, unsigned start_line, unsigned e
 	/* Sanity checks */
 	if (start_line > end_line) {
 		dev_warn(par->info->device,
-			"%s: start_line=%u is larger than end_line=%u. Shouldn't happen, will do full display update\n",
-			__func__, start_line, end_line);
+			 "%s: start_line=%u is larger than end_line=%u. Shouldn't happen, will do full display update\n",
+			 __func__, start_line, end_line);
 		start_line = 0;
 		end_line = par->info->var.yres - 1;
 	}
-	if (start_line > par->info->var.yres - 1 || end_line > par->info->var.yres - 1) {
+	if (start_line > par->info->var.yres - 1 ||
+	    end_line > par->info->var.yres - 1) {
 		dev_warn(par->info->device,
-			"%s: start_line=%u or end_line=%u is larger than max=%d. Shouldn't happen, will do full display update\n",
-			__func__, start_line, end_line, par->info->var.yres - 1);
+			 "%s: start_line=%u or end_line=%u is larger than max=%d. Shouldn't happen, will do full display update\n",
+			 __func__, start_line,
+			 end_line, par->info->var.yres - 1);
 		start_line = 0;
 		end_line = par->info->var.yres - 1;
 	}
 
 	fbtft_par_dbg(DEBUG_UPDATE_DISPLAY, par, "%s(start_line=%u, end_line=%u)\n",
-		__func__, start_line, end_line);
+		      __func__, start_line, end_line);
 
 	if (par->fbtftops.set_addr_win)
 		par->fbtftops.set_addr_win(par, 0, start_line,
-				par->info->var.xres-1, end_line);
+				par->info->var.xres - 1, end_line);
 
 	offset = start_line * par->info->fix.line_length;
 	len = (end_line - start_line + 1) * par->info->fix.line_length;
@@ -416,30 +419,21 @@ void fbtft_update_display(struct fbtft_par *par, unsigned start_line, unsigned e
 			__func__);
 
 	if (unlikely(timeit)) {
-		getnstimeofday(&ts_end);
-		if (par->update_time.tv_nsec == 0 && par->update_time.tv_sec == 0) {
-			par->update_time.tv_sec = ts_start.tv_sec;
-			par->update_time.tv_nsec = ts_start.tv_nsec;
-		}
-		ts_fps = timespec_sub(ts_start, par->update_time);
-		par->update_time.tv_sec = ts_start.tv_sec;
-		par->update_time.tv_nsec = ts_start.tv_nsec;
-		fps_ms = (ts_fps.tv_sec * 1000) + ((ts_fps.tv_nsec / 1000000) % 1000);
-		fps_us = (ts_fps.tv_nsec / 1000) % 1000;
-		fps = fps_ms * 1000 + fps_us;
+		ts_end = ktime_get();
+		if (!ktime_to_ns(par->update_time))
+			par->update_time = ts_start;
+
+		fps = ktime_us_delta(ts_start, par->update_time);
+		par->update_time = ts_start;
 		fps = fps ? 1000000 / fps : 0;
 
-		ts_duration = timespec_sub(ts_end, ts_start);
-		duration_ms = (ts_duration.tv_sec * 1000) + ((ts_duration.tv_nsec / 1000000) % 1000);
-		duration_us = (ts_duration.tv_nsec / 1000) % 1000;
-		throughput = duration_ms * 1000 + duration_us;
+		throughput = ktime_us_delta(ts_end, ts_start);
 		throughput = throughput ? (len * 1000) / throughput : 0;
 		throughput = throughput * 1000 / 1024;
 
 		dev_info(par->info->device,
-			"Display update: %ld kB/s (%ld.%.3ld ms), fps=%ld (%ld.%.3ld ms)\n",
-			throughput, duration_ms, duration_us,
-			fps, fps_ms, fps_us);
+			 "Display update: %ld kB/s, fps=%ld\n",
+			 throughput, fps);
 		par->first_update_done = true;
 	}
 }
@@ -1041,7 +1035,6 @@ int fbtft_unregister_framebuffer(struct fb_info *fb_info)
 {
 	struct fbtft_par *par = fb_info->par;
 	struct spi_device *spi = par->spi;
-	int ret;
 
 	if (spi)
 		spi_set_drvdata(spi, NULL);
@@ -1050,8 +1043,8 @@ int fbtft_unregister_framebuffer(struct fb_info *fb_info)
 	if (par->fbtftops.unregister_backlight)
 		par->fbtftops.unregister_backlight(par);
 	fbtft_sysfs_exit(par);
-	ret = unregister_framebuffer(fb_info);
-	return ret;
+	unregister_framebuffer(fb_info);
+	return 0;
 }
 EXPORT_SYMBOL(fbtft_unregister_framebuffer);
 
