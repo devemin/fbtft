@@ -1,6 +1,9 @@
 #for maji majo Iris LCD
+
 マジマジョアイリス用のmod です。
+
 （ライセンス関係まだチェックしてないです・・・）
+
 
 #HOWTO
 ```
@@ -12,8 +15,11 @@ sudo rpi-source
 ```
 
 /root/内にLinux カーネルソース一式が準備されます。
+
 また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
+
 以上で、カーネルモジュールをビルドする環境が1クリックで作られたことになります。
+
 
 参考
 https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
@@ -23,6 +29,7 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 
 #ドライバをビルド
+
 今回、fb_s6d1121.c　というファイルをマジョカアイリス液晶用に改造させてもらいました。
 
 
@@ -33,19 +40,26 @@ sudo make -j4
 
 ```
 #ドライバをロード
+
 ./majiinsmod.sh
+
 #gpioの接続が正しければ、液晶が暗転します。
 
 #ドライバをアンロード
+
 ./majirmmod.sh
 ```
 
 #フレームバッファ使い方
+
 https://github.com/notro/fbtft/wiki/Framebuffer-use
+
 fbcpやfbi 等
+
 （con2fbmap はsudo raspi-config のブートのところをコンソールブートにしないと、GUIブートだとできなそう？）
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
+
 fbtest
 
 このあたりのページが参考になります。
