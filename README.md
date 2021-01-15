@@ -6,7 +6,9 @@
 
 # 確認環境
 
-ラズパイ4 8gB /  2021-1-11 released Raspberry Pi OS
+ラズパイ4 8gB /  2021-1-11 released Raspberry Pi OS, カーネル 5.4.83-v7l+
+
+ラズパイ3B+ /  2021-1-11 released Raspberry Pi OS, カーネル 5.4.83-v7+
 
 # HOWTO
 ```
