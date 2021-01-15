@@ -1,6 +1,6 @@
 # Driver for maji majo Iris LCD (mod)
 
-マジマジョアイリス用のmod ドライバーです。
+マジマジョアイリスLCD の ラズパイ用 mod ドライバーです。
 
 
 # HOWTO
