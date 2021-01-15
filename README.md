@@ -54,13 +54,13 @@ sudo make -j4
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
 
-fbcpやfbi 等
+fbcpでデスクトップ写すのが面白いですね。　あとは fbi 等
 
-（con2fbmap はsudo raspi-config のブートのところをコンソールブートにしないと、GUIブートだとできなそう？）
+（con2fbmap はsudo raspi-config のブートのところをコンソールブートにしないと、GUIブートだとできなそう？というかできなかった）
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 
-fbtest
+fbtest　（描画テスト）
 
 このあたりのページが参考になります。
 
