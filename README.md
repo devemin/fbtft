@@ -1,8 +1,8 @@
 #Driver for maji majo Iris LCD (mod)
 
-�}�W�}�W���A�C���X�p��mod �h���C�o�[�ł��B
+マジマジョアイリス用のmod ドライバーです。
 
-�iTODO: ���C�Z���XGPL��MIT ���������Ă�̃`�F�b�N�j
+（TODO: ライセンスGPLとMIT が混ざってるのチェック）
 
 
 #HOWTO
@@ -15,23 +15,24 @@ sudo /usr/bin/rpi-source -q --tag-update
 sudo rpi-source
 ```
 
-/root/����Linux �J�[�l���\�[�X�ꎮ����������܂��B
+/root/内にLinux カーネルソース一式が準備されます。
 
-�܂��A/lib/modules/x.x.x.../build �ɃV���{���b�N�����N���쐬����܂��B
+また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
 
-�ȏ�ŁA�J�[�l�����W���[�����r���h�������1�N���b�N�ō��ꂽ���ƂɂȂ�܂��B
+以上で、カーネルモジュールをビルドする環境が1クリックで作られたことになります。
 
 
-�Q�l
+参考
 https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 
-#�}�W���J�A�C���XLCD�ڑ�
+#マジョカアイリスLCD接続
 
+配線は、majiinsmod.sh 内のgpiosというところを参照。CSはGNDへ (なぜかHighになってしまって通信できなくなるのでひとまずGNDへ。確認中)
 
-#�h���C�o���r���h
+#ドライバをビルド
 
-����Afb_s6d1121.c�@�Ƃ����t�@�C�����}�W���J�A�C���X�t���p�ɉ��������Ă��炢�܂����B�i�p�����[�^�x�^���������āE�E�E�j
+今回、fb_s6d1121.c　というファイルをマジョカアイリス液晶用に改造させてもらいました。（パラメータベタ書き許して・・・）
 
 
 ```
@@ -40,30 +41,30 @@ sudo make -j4
 
 
 ```
-#�h���C�o�����[�h
+#ドライバをロード
 
 ./majiinsmod.sh
 
-#gpio�̐ڑ�����������΁A�t�����Ó]���܂��B
+#gpioの接続が正しければ、液晶が暗転します。
 
-#�h���C�o���A�����[�h
+#ドライバをアンロード
 
 ./majirmmod.sh
 ```
 
-#�t���[���o�b�t�@�g����
+#フレームバッファ使い方
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
 
-fbcp�Ńf�X�N�g�b�v�ʂ��̂��ʔ����ł��ˁB�@���Ƃ� fbi ��
+fbcpでデスクトップ写すのが面白いですね。　あとは fbi 等
 
-�icon2fbmap ��sudo raspi-config �̃u�[�g�̂Ƃ�����R���\�[���u�[�g�ɂ��Ȃ��ƁAGUI�u�[�g���Ƃł��Ȃ����H�Ƃ������ł��Ȃ������j
+（con2fbmap はsudo raspi-config のブートのところをコンソールブートにしないと、GUIブートだとできなそう？というかできなかった）
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 
-fbtest�@�i�`��e�X�g�j
+fbtest　（描画テスト）
 
-���̂�����̃y�[�W���Q�l�ɂȂ�܂��B
+このあたりのページが参考になります。
 
 
 ```
@@ -74,35 +75,35 @@ make
 ```
 
 
-#�⑫
+#補足
 
 ```
-#frame buffer �������邩�m�F
+#frame buffer 何があるか確認
 ls /dev/fb*
-#/dev/fb0 �͊�{�I��GUI(startX�ł͂��܂�X11��)
-#/dev/fb1 �ɍ���̃}�W���J�A�C���X�t����fbtft�ɂ���ēo�^�����
-#GUI �Ȃ���CUI �R���\�[�����O�C�����ƁA���ꂪ�ԍ�����邱�Ƃ�����
+#/dev/fb0 は基本的にGUI(startXではじまるX11環境)
+#/dev/fb1 に今回のマジョカアイリス液晶がfbtftによって登録される
+#GUI なしのCUI コンソールログインだと、それが番号ずれることもある
 
 
-#fbtft�֘A�̃h���C�o�̓ǂݍ��ݏ󋵊m�F
+#fbtft関連のドライバの読み込み状況確認
 lsmod | grep fb
 
-#�h���C�o�P�����[�h
+#ドライバ１個ずつロード
 sudo insmod xxx
-#�h���C�o�P���A�����[�h
+#ドライバ１個ずつアンロード
 sudo rmmod xxx
 
-#�J�[�l���o�[�W�����m�F
+#カーネルバージョン確認
 uname -r
 
 ```
 
-insmod �̓��W���[���i�h���C�o�j���P�����[�h���܂��B
+insmod はモジュール（ドライバ）を１個ずつロードします。
 
-modprobe �̓��W���[�������܂����Ɗ֘A�̂��̂��ꏏ�ɂ܂Ƃ߂ă��[�h���Ă���܂��B
+modprobe はモジュールをうまいこと関連のものを一緒にまとめてロードしてくれます。
 
 
-�ȉ��Aoriginal README
+以下、original README
 
   FBTFT
 =========
