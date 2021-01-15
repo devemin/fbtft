@@ -1,5 +1,6 @@
 #for maji majo Iris LCD
 マジマジョアイリス用のmod です。
+（ライセンス関係まだチェックしてないです・・・）
 
 #HOWTO
 ```
@@ -22,6 +23,8 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 
 #ドライバをビルド
+今回、fb_s6d1121.c　というファイルをマジョカアイリス液晶用に改造させてもらいました。
+
 
 ```
 sudo make -j4
