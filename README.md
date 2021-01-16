@@ -1,6 +1,6 @@
-# Driver for maji majo Iris LCD (mod)
+# Driver for majoka Iris LCD (mod)
 
-マジマジョアイリスLCD の ラズパイ用 mod ドライバーです。
+マジョカアイリスLCD の ラズパイ用 mod ドライバーです。
 
 フレームバッファとして使えるようになります。(下の方参照)
 
