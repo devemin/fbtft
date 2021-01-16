@@ -4,6 +4,18 @@
 
 フレームバッファとして使えるようになります。(下の方参照)
 
+# 動いてる様子
+
+https://twitter.com/devemin/status/1349725112660946947?s=19
+
+https://twitter.com/devemin/status/1349741702236364807?s=19
+
+https://twitter.com/devemin/status/1349736972139388929?s=19
+
+https://twitter.com/devemin/status/1349763128960053250?s=19
+
+
+
 # 確認環境
 
 ラズパイ4 8gB /  2021-1-11 released Raspberry Pi OS, カーネル 5.4.83-v7l+
