@@ -1,4 +1,4 @@
-# Driver for majoka Iris LCD (mod)
+# Driver for majoca Iris LCD (mod)
 
 マジョカアイリスLCD の ラズパイ用 mod ドライバーです。
 
