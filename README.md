@@ -45,7 +45,9 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 # マジョカアイリスLCD接続
 
-配線は、majiinsmod.sh 内のgpiosというところを参照。CSは2でなくGNDへ (なぜかHighになってしまって通信できなくなるのでひとまずGNDへ。確認中)
+配線は、majiinsmod.sh 内のgpiosというところを参照。
+
+<b>CSは2でなくGNDへ</b>　 (なぜかHighになってしまって通信できなくなるのでひとまずGNDへ。確認中)
 
  gpios=reset:4,dc:3,wr:23,cs:2,db00:5,db01:6,db02:13,db03:19,db04:26,db05:12,db06:16,db07:20
 
