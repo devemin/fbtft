@@ -2,6 +2,18 @@
 import cv2
 
 
+
+
+
+def color565(r, g=0, b=0):
+    try:
+        r, g, b = r
+    except TypeError:
+        pass
+    return (r & 0xF8) << 8 | (g & 0xFC) << 3 | b >> 3
+
+
+
 width=640
 height=48
 rotation = 0
