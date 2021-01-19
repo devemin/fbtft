@@ -135,11 +135,11 @@ sudo apt install git bc bison flex libssl-dev
 sudo wget https://raw.githubusercontent.com/RPi-Distro/rpi-source/master/rpi-source -O /usr/local/bin/rpi-source && sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
 sudo rpi-source
 
-#https://github.com/RPi-Distro/rpi-source
-#/root/内にLinux カーネルソース一式が、サクサクッと準備されます。
-#また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
-#以上で、カーネルモジュールをビルドする環境が作られたことになります。
-#参考　https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
+# https://github.com/RPi-Distro/rpi-source
+# /root/内にLinux カーネルソース一式が、サクサクッと準備されます。
+# また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
+# 以上で、カーネルモジュールをビルドする環境が作られたことになります。
+# 参考　https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 ```
 
 <BR>
@@ -158,14 +158,15 @@ sudo make -j4
 <BR>
 
 ```
-#デバイスツリーをコピー
+# デバイスツリーをコピー
 
 dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
 sudo reboot now
+# コピー後、再起動します。
 
-#dts 情報とても参考になりました。Thanks! : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
-#https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
+# dts 情報とても参考になりました。Thanks! : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
+# https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
 
 ```
 
@@ -173,15 +174,15 @@ sudo reboot now
 <BR>
 
 ```
-#ドライバをロード
+# ドライバをロード
 ./majoins.sh
 
-#gpioの接続が正しければ、液晶が暗転します。
+# gpioの接続が正しければ、液晶が暗転します。
 
-#ドライバをアンロード
+# ドライバをアンロード
 ./majorm.sh
 
-#再起動すると登録は解除されます。必要な場合は、スクリプト起動時実行を設定しましょう。
+# 再起動すると登録は解除されます。必要な場合は、スクリプト起動時実行を設定しましょう。
 ```
 
 <BR>
