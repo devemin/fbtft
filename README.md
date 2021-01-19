@@ -153,7 +153,7 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 ## qiita にも簡単にまとめました。
 
-###マジョカアイリス細長液晶をラズパイで使う
+### マジョカアイリス細長液晶をラズパイで使う
 
 https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
