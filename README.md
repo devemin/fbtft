@@ -13,6 +13,8 @@
 
 (Raspberry Pi OS , 2021-1-11 リリースで動作確認したものです。**描画が速くなってます。**)
 
+![Test Image 4](img/image4.jpg)
+
 ![Test Image 1](img/image3.jpg)
 
 ![Test Image 2](img/image2.jpg)
