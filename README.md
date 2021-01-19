@@ -19,13 +19,13 @@
 
 ![Test Image 3](img/image1.jpg)
 
-https://twitter.com/devemin/status/1351198449442709508?s=20
+https://twitter.com/devemin/status/1351198449442709508
 
-https://twitter.com/devemin/status/1351214926707175432?s=20
+https://twitter.com/devemin/status/1351214926707175432
 
-https://twitter.com/devemin/status/1351187167314325506?s=20
+https://twitter.com/devemin/status/1351187167314325506
 
-https://twitter.com/devemin/status/1351338649116311552?s=20
+https://twitter.com/devemin/status/1351338649116311552
 
 
 
@@ -36,13 +36,13 @@ https://twitter.com/devemin/status/1351338649116311552?s=20
 
 
 
-https://twitter.com/devemin/status/1349725112660946947?s=19
+https://twitter.com/devemin/status/1349725112660946947
 
-https://twitter.com/devemin/status/1349741702236364807?s=19
+https://twitter.com/devemin/status/1349741702236364807
 
-https://twitter.com/devemin/status/1349736972139388929?s=19
+https://twitter.com/devemin/status/1349736972139388929
 
-https://twitter.com/devemin/status/1349763128960053250?s=19
+https://twitter.com/devemin/status/1349763128960053250
 
 
 ### kernel バージョン確認方法
