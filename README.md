@@ -53,6 +53,7 @@ https://twitter.com/devemin/status/1349763128960053250
 
 <BR>
 <BR>
+
 ### kernel バージョン確認方法
 
 ```
@@ -100,18 +101,21 @@ DB7:	20
 
 <BR>
 <BR>
+
 ### 配線の様子
 
 ![GPIO pinout](img/layout.jpg)
 
 <BR>
 <BR>
+
 ### GPIO ピン配置　参考
 
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
 
 <BR>
 <BR>
+
 ### 細長液晶側のピン配置
 
 →　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
@@ -151,6 +155,7 @@ sudo make -j4
 
 <BR>
 <BR>
+
 ```
 #デバイスツリーをコピー
 
@@ -179,6 +184,7 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 <BR>
 <BR>
+
 # フレームバッファ遊び方
 
 ## qiita にも簡単にまとめました。
@@ -216,7 +222,9 @@ g++ test_fbcpp.cpp
 
 #参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
 ```
+
 <BR>
+
 自分のコードからアクセスする場合は、
 
 フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
@@ -224,8 +232,10 @@ g++ test_fbcpp.cpp
 今回は、640x48x16bit の配列になり、BGR 16bit で格納されてます
 
 web の情報をご参照ください。
+
 <BR>
 <BR>
+
 ## ソフト等
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
