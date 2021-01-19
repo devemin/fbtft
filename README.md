@@ -204,19 +204,19 @@ https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
 #### Python x PIL で寿司
 
-https://github.com/devemin/fbtft/test_sushi.py
+https://github.com/devemin/fbtft/blob/master/test_sushi.py
 
 （冒頭の画像）
 
 
 #### Python x OpenCV x PIL で USBカメラ画像を細長液晶に映す
 
-https://github.com/devemin/fbtft/test_opencv.py
+https://github.com/devemin/fbtft/blob/master/test_opencv.py
 
 
 #### C でframebuffer 
 
-https://github.com/devemin/fbtft/test_fbcpp.cpp
+https://github.com/devemin/fbtft/blob/master/test_fbcpp.cpp
 
 ```
 g++ test_fbcpp.cpp
