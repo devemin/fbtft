@@ -161,7 +161,7 @@ sudo cp majocairis.dtbo /boot/overlays/
 https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
 
-ソフト等
+## ソフト等
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
 
@@ -171,7 +171,7 @@ fbcpでデスクトップ写すのが面白いですね。　あとは fbi 等
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 
-fbtest　（描画テスト）
+## fbtest　（描画テスト）
 
 このあたりのページが参考になります。
 
