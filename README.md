@@ -53,6 +53,9 @@ uname -r
 
 ラズパイ3B+ /  2021-1-11 released Raspberry Pi OS, カーネル 5.4.83-v7+
 
+（2019/4/8 release のラズパイimage(stretch) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
+
+
 # HOWTO
 ```
 sudo apt update 
@@ -76,8 +79,6 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 
 # マジョカアイリスLCD接続
 
-配線は、majocairis.dts 内のgpiosというところを参照。
-
 reset: 21  / DC: 22 / WR: 23 / CS: 24 / DB0: 5 / DB1: 6 / DB2: 13 / DB3: 19 / DB4: 26 / DB5: 12 / DB6: 16 / DB7: 20
 
 # ドライバをビルド
@@ -96,6 +97,9 @@ dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
 ```
 
+**Thanks!** : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
+
+https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
 
 
 ```
