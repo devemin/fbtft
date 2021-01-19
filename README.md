@@ -179,6 +179,12 @@ sudo reboot now
 
 # gpioの接続が正しければ、液晶が暗転します。
 
+lsmod | grep fb
+
+# チェックするコマンド
+# ロードされていれば、/dev/fb1 が今回のLCDとして表れます。
+# /dev/fb0 は液晶等、通常の画面です。
+
 # ドライバをアンロード
 ./majorm.sh
 
