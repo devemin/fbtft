@@ -91,6 +91,9 @@ reset: 21  / DC: 22 / WR: 23 / CS: 24 / DB0: 5 / DB1: 6 / DB2: 13 / DB3: 19 / DB
 
 ![GPIO pinout](img/layout.jpg)
 
+### GPIO ピン配置　参考
+
+→　https://deviceplus.jp/hobby/raspberrypi4_04/
 
 
 # ドライバをビルド
