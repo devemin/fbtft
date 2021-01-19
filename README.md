@@ -13,9 +13,9 @@
 
 (Raspberry Pi OS , 2021-1-11 リリースで動作確認したものです。**描画が速くなってます。**)
 
-`![Test Image 1](/img/image3.png)`
-`![Test Image 2](/img/image2.png)`
-`![Test Image 3](/img/image1.png)`
+`![Test Image 1](img/image3.png)`
+`![Test Image 2](img/image2.png)`
+`![Test Image 3](img/image1.png)`
 
 https://twitter.com/devemin/status/1351198449442709508?s=20
 
@@ -87,7 +87,7 @@ reset: 21  / DC: 22 / WR: 23 / CS: 24 / DB0: 5 / DB1: 6 / DB2: 13 / DB3: 19 / DB
 
 ### 配線の様子
 
-`![GPIO pinout](/img/layout.png)`
+`![GPIO pinout](img/layout.png)`
 
 
 
