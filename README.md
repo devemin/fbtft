@@ -6,6 +6,9 @@
 
 （カーネルのバージョンによって2種に別れてしまったので、`uname -r` コマンドでご自身のバージョンを確認し、使うブランチを選んでください。）
 
+  
+  
+  
 # 動いてる様子
 
 
@@ -49,12 +52,18 @@ https://twitter.com/devemin/status/1349736972139388929
 https://twitter.com/devemin/status/1349763128960053250
 
 
+  
+  
+  
 ### kernel バージョン確認方法
 
 ```
 uname -r
 ```
 
+  
+  
+  
 
 
 # 確認環境
@@ -65,6 +74,12 @@ uname -r
 
 （2019/4/8 release のラズパイimage(stretch, kernel 4.14) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
 
+  
+  
+  
+  
+  
+  
 
 # HOWTO
 
@@ -89,18 +104,33 @@ DB7:	20
 
 （4.x 系ブランチの配線とは変わってるので注意です。4.x 系はそちらのブランチの表示を参考にしてください）
 
+  
+  
+  
 ### 配線の様子
 
 ![GPIO pinout](img/layout.jpg)
 
+  
+  
+  
 ### GPIO ピン配置　参考
 
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
 
+  
+  
+  
 ### 細長液晶側のピン配置
 
 →　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
 
+  
+  
+  
+  
+  
+  
 
 # インストール
 
@@ -119,6 +149,9 @@ sudo rpi-source
 #参考　https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 ```
 
+  
+  
+  
 
 ```
 # ドライバをビルド
@@ -129,6 +162,9 @@ sudo make -j4
 ```
 
 
+  
+  
+  
 ```
 #デバイスツリーをコピー
 
@@ -140,7 +176,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 ```
 
-
+  
+  
+  
 
 ```
 #ドライバをロード
@@ -154,6 +192,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 #再起動すると登録は解除されます。必要な場合は、スクリプト起動時実行を設定しましょう。
 ```
 
+  
+  
+  
 # フレームバッファ遊び方
 
 ## qiita にも簡単にまとめました。
@@ -165,6 +206,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
+  
+  
+  
 
 ## スクリプト　sample 作りました
 
@@ -189,9 +233,18 @@ g++ test_fbcpp.cpp
 
 #参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
 ```
+   
+   
+自分のコードからアクセスする場合は、
 
+フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
 
+今回は、640x48x16bit の配列になり、BGR 16bit で格納されてます
 
+web の情報をご参照ください。
+  
+  
+  
 ## ソフト等
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
@@ -201,6 +254,10 @@ fbcpでデスクトップ写すのが面白いですね。　あとは fbi 等
 （con2fbmap はsudo raspi-config のブートのところをコンソールブートにしないと、GUIブートだとできなそう？というかできなかった）
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
+
+  
+  
+  
 
 ## fbtest　（描画テスト）
 
@@ -213,13 +270,6 @@ make
 ./fbtest -f /dev/fb1
 ```
 
-自分のコードからアクセスする場合は、
-
-フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
-
-今回は、640x48x16bit の配列になり、BGR 16bit で格納されてます
-
-web の情報をご参照ください。
 
 
 # トラブルシューティング
@@ -238,6 +288,9 @@ pin 配線と波形をご確認ください。
 →　https://github.com/devemin/fbtft/blob/master/img/hakei2.png
 
 
+  
+  
+  
 
 # 補足
 
@@ -266,6 +319,12 @@ insmod はモジュール（ドライバ）を１個ずつロードします。
 
 modprobe はモジュールをうまいこと関連のものを一緒にまとめてロードしてくれます。
 
+  
+  
+  
+  
+  
+  
 
 以下、original README
 
