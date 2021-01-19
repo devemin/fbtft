@@ -23,9 +23,12 @@ https://twitter.com/devemin/status/1351338649116311552?s=20
 
 
 
-### ブランチ for4.x　 (kernel 4.x 用)
+### ブランチ for4.x　 (kernel 4.x 用)　→　https://github.com/devemin/fbtft/tree/for4.x
 
  (4.x カーネル版用で、描画遅いです。)
+
+
+
 
 https://twitter.com/devemin/status/1349725112660946947?s=19
 
