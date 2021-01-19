@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 sudo modprobe fbtft
 sudo rmmod fbtft
 sudo insmod ./fbtft.ko

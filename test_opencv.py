@@ -19,7 +19,7 @@ while(True):
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # cv2の画像はBGRなのでRGBに変換
     image = Image.fromarray(frame)
     img_resize = image.resize((width, height))
-    draw = ImageDraw.Draw(imz_resize)
+    draw = ImageDraw.Draw(img_resize)
 
     imgdata = img_resize.getdata()
 
