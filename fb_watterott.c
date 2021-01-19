@@ -1,27 +1,14 @@
+// SPDX-License-Identifier: GPL-2.0+
 /*
  * FB driver for the Watterott LCD Controller
  *
  * Copyright (C) 2013 Noralf Tronnes
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
-#include <linux/gpio.h>
+#include <linux/gpio/consumer.h>
 #include <linux/delay.h>
 
 #include "fbtft.h"
@@ -43,9 +30,8 @@
 #define COLOR_RGB233		10
 #define COLOR_RGB565		16
 
-
 static short mode = 565;
-module_param(mode, short, 0);
+module_param(mode, short, 0000);
 MODULE_PARM_DESC(mode, "RGB color transfer mode: 332, 565 (default)");
 
 static void write_reg8_bus8(struct fbtft_par *par, int len, ...)
@@ -60,26 +46,25 @@ static void write_reg8_bus8(struct fbtft_par *par, int len, ...)
 	va_end(args);
 
 	fbtft_par_dbg_hex(DEBUG_WRITE_REGISTER, par,
-		par->info->device, u8, par->buf, len, "%s: ", __func__);
+			  par->info->device, u8, par->buf,
+			  len, "%s: ", __func__);
 
 	ret = par->fbtftops.write(par, par->buf, len);
 	if (ret < 0) {
 		dev_err(par->info->device,
-			"%s: write() failed and returned %d\n", __func__, ret);
+			"write() failed and returned %d\n", ret);
 		return;
 	}
 }
 
 static int write_vmem(struct fbtft_par *par, size_t offset, size_t len)
 {
-	unsigned start_line, end_line;
-	u16 *vmem16 = (u16 *)(par->info->screen_base + offset);
-	u16 *pos = par->txbuf.buf + 1;
-	u16 *buf16 = par->txbuf.buf + 10;
+	unsigned int start_line, end_line;
+	u16 *vmem16 = (u16 *)(par->info->screen_buffer + offset);
+	__be16 *pos = par->txbuf.buf + 1;
+	__be16 *buf16 = par->txbuf.buf + 10;
 	int i, j;
 	int ret = 0;
-
-	fbtft_par_dbg(DEBUG_WRITE_VMEM, par, "%s()\n", __func__);
 
 	start_line = offset / par->info->fix.line_length;
 	end_line = start_line + (len / par->info->fix.line_length) - 1;
@@ -105,20 +90,19 @@ static int write_vmem(struct fbtft_par *par, size_t offset, size_t len)
 	return 0;
 }
 
-#define RGB565toRGB323(c) (((c&0xE000)>>8) | ((c&0600)>>6) | ((c&0x001C)>>2))
-#define RGB565toRGB332(c) (((c&0xE000)>>8) | ((c&0700)>>6) | ((c&0x0018)>>3))
-#define RGB565toRGB233(c) (((c&0xC000)>>8) | ((c&0700)>>5) | ((c&0x001C)>>2))
+static inline int rgb565_to_rgb332(u16 c)
+{
+	return ((c & 0xE000) >> 8) | ((c & 000700) >> 6) | ((c & 0x0018) >> 3);
+}
 
 static int write_vmem_8bit(struct fbtft_par *par, size_t offset, size_t len)
 {
-	unsigned start_line, end_line;
-	u16 *vmem16 = (u16 *)(par->info->screen_base + offset);
-	u16 *pos = par->txbuf.buf + 1;
+	unsigned int start_line, end_line;
+	u16 *vmem16 = (u16 *)(par->info->screen_buffer + offset);
+	__be16 *pos = par->txbuf.buf + 1;
 	u8 *buf8 = par->txbuf.buf + 10;
 	int i, j;
 	int ret = 0;
-
-	fbtft_par_dbg(DEBUG_WRITE_VMEM, par, "%s()\n", __func__);
 
 	start_line = offset / par->info->fix.line_length;
 	end_line = start_line + (len / par->info->fix.line_length) - 1;
@@ -133,7 +117,7 @@ static int write_vmem_8bit(struct fbtft_par *par, size_t offset, size_t len)
 	for (i = start_line; i <= end_line; i++) {
 		pos[1] = cpu_to_be16(i);
 		for (j = 0; j < par->info->var.xres; j++) {
-			buf8[j] = RGB565toRGB332(*vmem16);
+			buf8[j] = rgb565_to_rgb332(*vmem16);
 			vmem16++;
 		}
 		ret = par->fbtftops.write(par,
@@ -146,7 +130,7 @@ static int write_vmem_8bit(struct fbtft_par *par, size_t offset, size_t len)
 	return 0;
 }
 
-static unsigned firmware_version(struct fbtft_par *par)
+static unsigned int firmware_version(struct fbtft_par *par)
 {
 	u8 rxbuf[4] = {0, };
 
@@ -161,15 +145,13 @@ static unsigned firmware_version(struct fbtft_par *par)
 static int init_display(struct fbtft_par *par)
 {
 	int ret;
-	unsigned version;
+	unsigned int version;
 	u8 save_mode;
-
-	fbtft_par_dbg(DEBUG_INIT_DISPLAY, par, "%s()\n", __func__);
 
 	/* enable SPI interface by having CS and MOSI low during reset */
 	save_mode = par->spi->mode;
 	par->spi->mode |= SPI_CS_HIGH;
-	ret = par->spi->master->setup(par->spi); /* set CS inactive low */
+	ret = spi_setup(par->spi); /* set CS inactive low */
 	if (ret) {
 		dev_err(par->info->device, "Could not set SPI_CS_HIGH\n");
 		return ret;
@@ -180,7 +162,7 @@ static int init_display(struct fbtft_par *par)
 	par->fbtftops.reset(par);
 	mdelay(1000);
 	par->spi->mode = save_mode;
-	ret = par->spi->master->setup(par->spi);
+	ret = spi_setup(par->spi);
 	if (ret) {
 		dev_err(par->info->device, "Could not restore SPI mode\n");
 		return ret;
@@ -189,7 +171,7 @@ static int init_display(struct fbtft_par *par)
 
 	version = firmware_version(par);
 	fbtft_par_dbg(DEBUG_INIT_DISPLAY, par, "Firmware version: %x.%02x\n",
-						version >> 8, version & 0xFF);
+		      version >> 8, version & 0xFF);
 
 	if (mode == 332)
 		par->fbtftops.write_vmem = write_vmem_8bit;
@@ -204,8 +186,6 @@ static void set_addr_win(struct fbtft_par *par, int xs, int ys, int xe, int ye)
 static int set_var(struct fbtft_par *par)
 {
 	u8 rotate;
-
-	fbtft_par_dbg(DEBUG_INIT_DISPLAY, par, "%s()\n", __func__);
 
 	/* this controller rotates clock wise */
 	switch (par->info->var.rotate) {
@@ -228,7 +208,7 @@ static int set_var(struct fbtft_par *par)
 
 static int verify_gpios(struct fbtft_par *par)
 {
-	if (par->gpio.reset < 0) {
+	if (!par->gpio.reset) {
 		dev_err(par->info->device, "Missing 'reset' gpio. Aborting.\n");
 		return -EINVAL;
 	}
@@ -242,9 +222,9 @@ static int backlight_chip_update_status(struct backlight_device *bd)
 	int brightness = bd->props.brightness;
 
 	fbtft_par_dbg(DEBUG_BACKLIGHT, par,
-		"%s: brightness=%d, power=%d, fb_blank=%d\n",
-		__func__, bd->props.brightness, bd->props.power,
-		bd->props.fb_blank);
+		      "%s: brightness=%d, power=%d, fb_blank=%d\n", __func__,
+		      bd->props.brightness, bd->props.power,
+		      bd->props.fb_blank);
 
 	if (bd->props.power != FB_BLANK_UNBLANK)
 		brightness = 0;
@@ -257,31 +237,23 @@ static int backlight_chip_update_status(struct backlight_device *bd)
 	return 0;
 }
 
+static const struct backlight_ops bl_ops = {
+	.update_status = backlight_chip_update_status,
+};
+
 static void register_chip_backlight(struct fbtft_par *par)
 {
 	struct backlight_device *bd;
 	struct backlight_properties bl_props = { 0, };
-	struct backlight_ops *bl_ops;
 
-	fbtft_par_dbg(DEBUG_BACKLIGHT, par, "%s()\n", __func__);
-
-	bl_ops = devm_kzalloc(par->info->device, sizeof(struct backlight_ops),
-				GFP_KERNEL);
-	if (!bl_ops) {
-		dev_err(par->info->device,
-			"%s: could not allocate memory for backlight operations.\n",
-			__func__);
-		return;
-	}
-
-	bl_ops->update_status = backlight_chip_update_status;
 	bl_props.type = BACKLIGHT_RAW;
 	bl_props.power = FB_BLANK_POWERDOWN;
 	bl_props.max_brightness = 100;
 	bl_props.brightness = DEFAULT_BRIGHTNESS;
 
 	bd = backlight_device_register(dev_driver_string(par->info->device),
-				par->info->device, par, bl_ops, &bl_props);
+				       par->info->device, par, &bl_ops,
+				       &bl_props);
 	if (IS_ERR(bd)) {
 		dev_err(par->info->device,
 			"cannot register backlight device (%ld)\n",
@@ -296,7 +268,6 @@ static void register_chip_backlight(struct fbtft_par *par)
 #else
 #define register_chip_backlight NULL
 #endif
-
 
 static struct fbtft_display display = {
 	.regwidth = 8,
@@ -315,6 +286,7 @@ static struct fbtft_display display = {
 		.register_backlight = register_chip_backlight,
 	},
 };
+
 FBTFT_REGISTER_DRIVER(DRVNAME, "watterott,openlcd", &display);
 
 MODULE_ALIAS("spi:" DRVNAME);

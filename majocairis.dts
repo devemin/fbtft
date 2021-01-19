@@ -1,0 +1,134 @@
+/* Device Tree for MajocaIris */
+/* NOT WORKING YET */
+/* ベースにした: https://gist.github.com/hgroll/2731ae6d05350df663b123615f765bf5 */
+
+/* compile
+$ dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
+$ sudo cp majocairis.dtbo /boot/overlays/
+*/
+
+/* configure
+$ sudo vi /boot/config.txt
+[all]
+# 最後の行に追記。debugはあってもなくても。
+dtoverlay=majocairis,debug=1
+
+$ sudo reboot
+*/
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <&spi0>;
+		__overlay__ {
+			status = "okay";
+
+			spidev@0{
+				status = "disabled";
+			};
+
+			spidev@1{
+				status = "disabled";
+			};
+		};
+	};
+
+
+	fragment@1 {
+		target = <&gpio>;
+		__overlay__ {
+		       majocairis_pins: majocairis_pins {
+				// 使用するピンとout/inの定義
+				brcm,pins     = <21 22 23 24 5 6 13 19 26 12 16 20>;
+				brcm,function = <1 1  1 1 1 1  1  1  1  1  1  1>; /* 1:out 0:in */
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&spi0>;
+		__overlay__ {
+			/* needed to avoid dtc warning */
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			majocairis: majocairis@0{
+				/* https://github.com/torvalds/linux/tree/master/drivers/staging/fbtft の
+				   どれかと互換なのではないかという邪推だけでdtsを書くやつ
+				   https://github.com/devemin/fbtft/blob/master/fb_s6d1121.c を読むに
+				   ili9341とほぼ同じ。xeとyeの値がカスタムされているだけ。
+				*/
+				compatible = "ilitek,majocairisLCD";
+				//compatible = "takaratomy,majocairis";
+				/* regはcs(0 or 1)かと思ってたけどわからん */
+				reg = <0>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&majocairis_pins>;
+				spi-max-frequency = <10000000>;
+				txbufren = <16384>;
+				fps = <20>;
+				buswidth = <8>;
+				debug = <2>;
+
+				// https://github.com/devemin/fbtft/blob/master/fb_s6d1121.c
+				// をもとにパラメータを展開したもの。
+				width = <640>;
+				height = <48>;
+				reset-gpios = <&gpio 21 1>;
+				dc-gpios = <&gpio 22 0>;
+				wr-gpios = <&gpio 23 0>;
+				cs-gpios = <&gpio 24 1>;
+				/* db-gpiosかきかた https://github.com/notro/fbtft/issues/443 */
+				db-gpios = <&gpio 5 0>,
+						<&gpio 6 0>,
+						<&gpio 13 0>,
+						<&gpio 19 0>,
+						<&gpio 26 0>,
+						<&gpio 12 0>,
+						<&gpio 16 0>,
+						<&gpio 20 0>;
+				gamma = "00 1C 21 02 11 07 3D 79 4B 07 0F 0C 1B 1F 0F\n00 1C 20 04 0F 04 33 45 42 04 0C 0A 22 29 0F";
+
+				/* https://github.com/notro/fbtft/issues/300#issuecomment-127012295 より。
+				   -1は0x1000000になる。-1,0xc8,0xff...と書いていた部分は0x10000C8,0xFF...となる
+				   -2は0x2000000になる。-2,0x0a...と書いていた部分は0x200000a...となる
+				   -3はなさげ。 */
+
+					//このinitをコメントアウトすると fb_majocairisLCD.c の init_display の方が呼び出された。
+					//init または fb_majocairisLCD.c のinit_display の内容が実行されると、ロジアナでみるとなぜか0xC8 が化けてる。
+					// 0x10000C8 0xFF 0x93 0x42 の最初の 0xC8 が 0xDE とかおかしな値に。ほかのデータは大丈夫そうなのになぜ・・・
+				/*
+				init = <0x1000001
+					0x2000005
+					0x1000028
+					0x10000C8 0xFF 0x93 0x42			//なぜかこのsetEXTC コマンドの最初のC8 が DE に化けるので、同じのを再度送ってる。データシートを見ると、幸いDEh というコマンドは無いようだ。
+					0x10000C8 0xFF 0x93 0x42 
+					0x100002A 0x00 0x00 0x01 0x3F 
+					0x100002B 0x00 0x00 0x00 0x5F 
+					0x1000036 0xC8 
+					0x10000C0 0x0E 0x0E 
+					0x10000C1 0x10 
+					0x10000C5 0xFA 
+					0x100003A 0x55 
+					0x10000B1 0x00 0x18 
+					0x1000011 0x2000082
+					0x1000029 0x200000a>;
+				*/
+			};
+// gamma
+//					0x10000E0 0x00 0x1C 0x21 0x02 0x11 0x07 0x3D 0x79 0x4B 0x07 0x0F 0x0C 0x1B 0x1F 0x0F 
+//					0x10000E1 0x00 0x1C 0x20 0x04 0x0F 0x04 0x33 0x45 0x42 0x04 0x0C 0x0A 0x22 0x29 0x0F 
+
+		};
+	};
+ 	__overrides__ {
+ 	 	speed =   <&majocairis>,"spi-max-frequency:0";
+ 	 	rotate =  <&majocairis>,"rotate:0";
+ 	 	fps =     <&majocairis>,"fps:0";
+ 	 	debug =   <&majocairis>,"debug:0";
+ 	};
+};
