@@ -63,29 +63,22 @@ uname -r
 
 
 # HOWTO
-```
-sudo apt update 
-sudo apt install git bc bison flex libssl-dev
-sudo wget https://raw.githubusercontent.com/RPi-Distro/rpi-source/master/rpi-source -O /usr/local/bin/rpi-source && sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
-sudo rpi-source
-```
-
-https://github.com/RPi-Distro/rpi-source
-
-/root/内にLinux カーネルソース一式が、サクサクッと準備されます。
-
-また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
-
-以上で、カーネルモジュールをビルドする環境が作られたことになります。
 
 
-参考
-https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
+# マジョカアイリスLCD の配線
 
-
-# マジョカアイリスLCD接続
-
-reset: 21  / DC: 22 / WR: 23 / CS: 24 / DB0: 5 / DB1: 6 / DB2: 13 / DB3: 19 / DB4: 26 / DB5: 12 / DB6: 16 / DB7: 20
+reset:	21
+DC:	22
+WR:	23
+CS:	24
+DB0:	5
+DB1:	6
+DB2:	13
+DB3:	19
+DB4:	26
+DB5:	12
+DB6:	16
+DB7:	20
 
 ### 配線の様子
 
@@ -96,18 +89,35 @@ reset: 21  / DC: 22 / WR: 23 / CS: 24 / DB0: 5 / DB1: 6 / DB2: 13 / DB3: 19 / DB
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
 
 
-# ドライバをビルド
+
+# インストール
 
 ```
+# カーネルソースの準備
+sudo apt update 
+sudo apt install git bc bison flex libssl-dev
+sudo wget https://raw.githubusercontent.com/RPi-Distro/rpi-source/master/rpi-source -O /usr/local/bin/rpi-source && sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
+sudo rpi-source
+
+https://github.com/RPi-Distro/rpi-source
+#/root/内にLinux カーネルソース一式が、サクサクッと準備されます。
+#また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
+#以上で、カーネルモジュールをビルドする環境が作られたことになります。
+#参考　https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
+```
+
+
+```
+# ドライバをビルド
 cd
 git clone https://github.com/devemin/fbtft
 cd fbtft
 sudo make -j4
 ```
 
-#デバイスツリーをコピー
 
 ```
+#デバイスツリーをコピー
 dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
 ```
@@ -119,20 +129,17 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 ```
 #ドライバをロード
-
 ./majoins.sh
 
 #gpioの接続が正しければ、液晶が暗転します。
 
 #ドライバをアンロード
-
 ./majorm.sh
 
 #再起動すると登録は解除されます。
-
 ```
 
-# フレームバッファ使い方
+# フレームバッファ遊び方
 
 ソフト等
 
