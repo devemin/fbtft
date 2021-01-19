@@ -206,7 +206,7 @@ https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
 https://github.com/devemin/fbtft/blob/master/test_sushi.py
 
-（冒頭の画像）
+（冒頭の画像。Python で描画遅いです）
 
 
 #### Python x OpenCV x PIL で USBカメラ画像を細長液晶に映す（書いただけで、まだ試してない）
