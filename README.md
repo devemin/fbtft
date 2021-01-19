@@ -166,6 +166,32 @@ sudo cp majocairis.dtbo /boot/overlays/
 https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
 
+## スクリプト　sample 作りました
+
+#### Python x PIL で寿司
+
+https://github.com/devemin/fbtft/test_sushi.py
+
+（冒頭の画像）
+
+
+#### Python x OpenCV x PIL で USBカメラ画像を細長液晶に映す
+
+https://github.com/devemin/fbtft/test_opencv.py
+
+
+#### C でframebuffer 
+
+https://github.com/devemin/fbtft/test_fbcpp.cpp
+
+```
+g++ test_fbcpp.cpp
+
+#参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
+```
+
+
+
 ## ソフト等
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
