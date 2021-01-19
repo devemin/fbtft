@@ -13,6 +13,10 @@
 
 (Raspberry Pi OS , 2021-1-11 リリースで動作確認したものです。**描画が速くなってます。**)
 
+![Test Image 1](/img/image3.png)
+![Test Image 2](/img/image2.png)
+![Test Image 3](/img/image1.png)
+
 https://twitter.com/devemin/status/1351198449442709508?s=20
 
 https://twitter.com/devemin/status/1351214926707175432?s=20
@@ -80,6 +84,12 @@ https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 # マジョカアイリスLCD接続
 
 reset: 21  / DC: 22 / WR: 23 / CS: 24 / DB0: 5 / DB1: 6 / DB2: 13 / DB3: 19 / DB4: 26 / DB5: 12 / DB6: 16 / DB7: 20
+
+### 配線の様子
+
+![GPIO pinout](/img/layout.png)
+
+
 
 # ドライバをビルド
 
