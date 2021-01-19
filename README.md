@@ -8,7 +8,6 @@
 
 <BR>
 <BR>
-<BR>
 # 動いてる様子
 
 
@@ -54,14 +53,12 @@ https://twitter.com/devemin/status/1349763128960053250
 
 <BR>
 <BR>
-<BR>
 ### kernel バージョン確認方法
 
 ```
 uname -r
 ```
 
-<BR>
 <BR>
 <BR>
 
@@ -74,9 +71,6 @@ uname -r
 
 （2019/4/8 release のラズパイimage(stretch, kernel 4.14) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
 
-<BR>
-<BR>
-<BR>
 <BR>
 <BR>
 <BR>
@@ -106,12 +100,10 @@ DB7:	20
 
 <BR>
 <BR>
-<BR>
 ### 配線の様子
 
 ![GPIO pinout](img/layout.jpg)
 
-<BR>
 <BR>
 <BR>
 ### GPIO ピン配置　参考
@@ -120,14 +112,10 @@ DB7:	20
 
 <BR>
 <BR>
-<BR>
 ### 細長液晶側のピン配置
 
 →　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
 
-<BR>
-<BR>
-<BR>
 <BR>
 <BR>
 <BR>
@@ -151,7 +139,6 @@ sudo rpi-source
 
 <BR>
 <BR>
-<BR>
 
 ```
 # ドライバをビルド
@@ -162,7 +149,6 @@ sudo make -j4
 ```
 
 
-<BR>
 <BR>
 <BR>
 ```
@@ -176,7 +162,6 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 ```
 
-<BR>
 <BR>
 <BR>
 
@@ -194,7 +179,6 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 <BR>
 <BR>
-<BR>
 # フレームバッファ遊び方
 
 ## qiita にも簡単にまとめました。
@@ -206,7 +190,6 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
-<BR>
 <BR>
 <BR>
 
@@ -234,7 +217,6 @@ g++ test_fbcpp.cpp
 #参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
 ```
 <BR>
-<BR>
 自分のコードからアクセスする場合は、
 
 フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
@@ -242,7 +224,6 @@ g++ test_fbcpp.cpp
 今回は、640x48x16bit の配列になり、BGR 16bit で格納されてます
 
 web の情報をご参照ください。
-<BR>
 <BR>
 <BR>
 ## ソフト等
@@ -255,7 +236,6 @@ fbcpでデスクトップ写すのが面白いですね。　あとは fbi 等
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 
-<BR>
 <BR>
 <BR>
 
@@ -290,7 +270,6 @@ pin 配線と波形をご確認ください。
 
 <BR>
 <BR>
-<BR>
 
 # 補足
 
@@ -319,9 +298,6 @@ insmod はモジュール（ドライバ）を１個ずつロードします。
 
 modprobe はモジュールをうまいこと関連のものを一緒にまとめてロードしてくれます。
 
-<BR>
-<BR>
-<BR>
 <BR>
 <BR>
 <BR>
