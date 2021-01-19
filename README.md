@@ -233,8 +233,8 @@ g++ test_fbcpp.cpp
 
 #参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
 ```
-   
-   
+  
+  
 自分のコードからアクセスする場合は、
 
 フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
