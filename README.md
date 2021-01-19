@@ -11,7 +11,7 @@
 
 ### ブランチ master　(kernel 5.4 用) 
 
-(Raspberry Pi OS , 2021-1-11 リリースで動作確認したものです。描画が速くなってます。)
+(Raspberry Pi OS , 2021-1-11 リリースで動作確認したものです。**描画が速くなってます。**)
 
 https://twitter.com/devemin/status/1351198449442709508?s=20
 
