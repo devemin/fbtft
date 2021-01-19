@@ -68,6 +68,7 @@ uname -r
 # マジョカアイリスLCD の配線
 
 ```
+LCD :	ラズパイ
 reset:	21
 DC:	22
 WR:	23
@@ -91,6 +92,9 @@ DB7:	20
 
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
 
+### 細長液晶側のピン配置
+
+→　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
 
 
 # インストール
@@ -183,6 +187,8 @@ web の情報をご参照ください。
 pin 配線と波形をご確認ください。
 
 液晶がノイズに弱いらしい？というのも、考慮が必要かもしれません。
+
+（実際は、Reset: 3.3V, RD: 3.3V, CS: GND でも大丈夫かも？）
 
 一応波形サンプル
 
