@@ -162,6 +162,7 @@ sudo make -j4
 
 dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
+sudo reboot now
 
 #dts 情報とても参考になりました。Thanks! : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
 #https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
