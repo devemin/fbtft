@@ -153,7 +153,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 ## qiita にも簡単にまとめました。
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">マジョカアイリス細長液晶をラズパイで使う [Linux] on <a href="https://twitter.com/Qiita?ref_src=twsrc%5Etfw">@Qiita</a> <a href="https://t.co/B8DIzuUYuU">https://t.co/B8DIzuUYuU</a></p>&mdash; でべ (@devemin) <a href="https://twitter.com/devemin/status/1348890816253620231?ref_src=twsrc%5Etfw">January 12, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+###マジョカアイリス細長液晶をラズパイで使う
+
+https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
 
 ソフト等
