@@ -97,12 +97,13 @@ DB7:	20
 
 ```
 # カーネルソースの準備
+
 sudo apt update 
 sudo apt install git bc bison flex libssl-dev
 sudo wget https://raw.githubusercontent.com/RPi-Distro/rpi-source/master/rpi-source -O /usr/local/bin/rpi-source && sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
 sudo rpi-source
 
-https://github.com/RPi-Distro/rpi-source
+#https://github.com/RPi-Distro/rpi-source
 #/root/内にLinux カーネルソース一式が、サクサクッと準備されます。
 #また、/lib/modules/x.x.x.../build にシンボリックリンクが作成されます。
 #以上で、カーネルモジュールをビルドする環境が作られたことになります。
@@ -121,13 +122,15 @@ sudo make -j4
 
 ```
 #デバイスツリーをコピー
+
 dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
+
+#dts 情報とても参考になりました。Thanks! : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
+#https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
+
 ```
 
-**Thanks!** : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
-
-参考：　https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
 
 
 ```
