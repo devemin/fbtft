@@ -214,7 +214,7 @@ https://github.com/devemin/fbtft/blob/master/test_sushi.py
 https://github.com/devemin/fbtft/blob/master/test_opencv.py
 
 
-#### C でframebuffer 
+#### C でframebuffer （四角を描画するだけ）
 
 https://github.com/devemin/fbtft/blob/master/test_fbcpp.cpp
 
