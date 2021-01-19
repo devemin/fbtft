@@ -114,7 +114,7 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 **Thanks!** : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
 
-https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
+参考：　https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
 
 
 ```
