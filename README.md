@@ -53,7 +53,7 @@ uname -r
 
 ラズパイ3B+ /  2021-1-11 released Raspberry Pi OS, カーネル 5.4.83-v7+
 
-（2019/4/8 release のラズパイimage(stretch) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
+（2019/4/8 release のラズパイimage(stretch, kernel 4.14) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
 
 
 # HOWTO
