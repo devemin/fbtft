@@ -6,9 +6,9 @@
 
 （カーネルのバージョンによって2種に別れてしまったので、`uname -r` コマンドでご自身のバージョンを確認し、使うブランチを選んでください。）
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 # 動いてる様子
 
 
@@ -52,18 +52,18 @@ https://twitter.com/devemin/status/1349736972139388929
 https://twitter.com/devemin/status/1349763128960053250
 
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 ### kernel バージョン確認方法
 
 ```
 uname -r
 ```
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 
 
 # 確認環境
@@ -74,12 +74,12 @@ uname -r
 
 （2019/4/8 release のラズパイimage(stretch, kernel 4.14) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
 
-  
-  
-  
-  
-  
-  
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
 
 # HOWTO
 
@@ -104,33 +104,33 @@ DB7:	20
 
 （4.x 系ブランチの配線とは変わってるので注意です。4.x 系はそちらのブランチの表示を参考にしてください）
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 ### 配線の様子
 
 ![GPIO pinout](img/layout.jpg)
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 ### GPIO ピン配置　参考
 
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 ### 細長液晶側のピン配置
 
 →　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
 
-  
-  
-  
-  
-  
-  
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
 
 # インストール
 
@@ -149,9 +149,9 @@ sudo rpi-source
 #参考　https://qiita.com/RCA3610/items/02d8274d78ee8c26e8c9
 ```
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 
 ```
 # ドライバをビルド
@@ -162,9 +162,9 @@ sudo make -j4
 ```
 
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 ```
 #デバイスツリーをコピー
 
@@ -176,9 +176,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 ```
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 
 ```
 #ドライバをロード
@@ -192,9 +192,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 #再起動すると登録は解除されます。必要な場合は、スクリプト起動時実行を設定しましょう。
 ```
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 # フレームバッファ遊び方
 
 ## qiita にも簡単にまとめました。
@@ -206,9 +206,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 
 https://qiita.com/devemin/items/9a3a3d40538b782b39d2
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 
 ## スクリプト　sample 作りました
 
@@ -233,8 +233,8 @@ g++ test_fbcpp.cpp
 
 #参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
 ```
-  
-  
+<BR>
+<BR>
 自分のコードからアクセスする場合は、
 
 フレームバッファ /dev/fb1 をpython なりC なりでopen してバイナリ書き込めば、画面にその色が出ます。
@@ -242,9 +242,9 @@ g++ test_fbcpp.cpp
 今回は、640x48x16bit の配列になり、BGR 16bit で格納されてます
 
 web の情報をご参照ください。
-  
-  
-  
+<BR>
+<BR>
+<BR>
 ## ソフト等
 
 https://github.com/notro/fbtft/wiki/Framebuffer-use
@@ -255,9 +255,9 @@ fbcpでデスクトップ写すのが面白いですね。　あとは fbi 等
 
 https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 
 ## fbtest　（描画テスト）
 
@@ -288,9 +288,9 @@ pin 配線と波形をご確認ください。
 →　https://github.com/devemin/fbtft/blob/master/img/hakei2.png
 
 
-  
-  
-  
+<BR>
+<BR>
+<BR>
 
 # 補足
 
@@ -319,12 +319,12 @@ insmod はモジュール（ドライバ）を１個ずつロードします。
 
 modprobe はモジュールをうまいこと関連のものを一緒にまとめてロードしてくれます。
 
-  
-  
-  
-  
-  
-  
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
 
 以下、original README
 
