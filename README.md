@@ -185,8 +185,8 @@ pin 配線と波形をご確認ください。
 液晶がノイズに弱いらしい？というのも、考慮が必要かもしれません。
 
 一応波形サンプル
-→　
-→　
+→　https://github.com/devemin/fbtft/blob/master/img/hakei1.png
+→　https://github.com/devemin/fbtft/blob/master/img/hakei2.png
 
 
 # 補足
