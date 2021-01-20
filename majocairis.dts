@@ -1,5 +1,4 @@
 /* Device Tree for MajocaIris */
-/* NOT WORKING YET */
 /* ベースにした: https://gist.github.com/hgroll/2731ae6d05350df663b123615f765bf5 */
 
 /* compile
