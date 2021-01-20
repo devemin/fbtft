@@ -158,16 +158,23 @@ sudo make -j4
 <BR>
 
 ```
-# デバイスツリーをコピー
+# デバイスツリーをコピー・反映
 
 dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
+
+sudo mousepad /boot/config.txt
+#sudo leafpad /boot/config.txt
+
+# /boot/config.txt の最後に、下記を追加します。
+dtoverlay=majocairis,debug=1
+
+
 sudo reboot now
-# コピー後、再起動します。
+# 再起動します。
 
 # dts 情報とても参考になりました。Thanks! : Twitter @Akkiesoft さん　https://twitter.com/Akkiesoft
 # https://gist.github.com/Akkiesoft/86446a431190709bec47877626a5623f
-
 ```
 
 <BR>
@@ -269,7 +276,8 @@ https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 ```
 git clone https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
 cd fbtest
-make
+sudo apt-get install libnetpbm10-dev
+make -j4
 ./fbtest -f /dev/fb1
 ```
 
