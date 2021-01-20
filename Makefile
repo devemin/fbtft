@@ -52,7 +52,7 @@ default: .config
 	$(MAKE) -C $(KDIR) M=$$PWD modules
 
 .config:
-	grep config Kconfig | cut -d" " -f2 | sed "s@^@CONFIG_@; s@$$@=m@" > .config
+	grep config Kconfig | cut -d' ' -f2 | sed 's@^@CONFIG_@; s@$$@=m@' > .config
 
 #install:
 #	$(MAKE) -C $(KDIR) M=$$PWD modules_install
