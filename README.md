@@ -225,6 +225,7 @@ python3 test_sushi.py
 https://github.com/devemin/fbtft/blob/master/test_opencv.py
 
 ```
+# (別途、OpenCV インストールが必要です。)
 python3 test_opencv.py
 ```
 
