@@ -151,7 +151,9 @@ sudo cp majocairis.dtbo /boot/overlays/
 sudo mousepad /boot/config.txt
 #または、 sudo leafpad /boot/config.txt
 
-# /boot/config.txt の最後に、下記を追加します。
+
+
+# /boot/config.txt の最後に、下記を追加します。【忘れずに！】
 dtoverlay=majocairis,debug=1
 
 
