@@ -98,7 +98,7 @@ LCD pin
 
 ![GPIO pinout](img/layout.jpg)
 
-### GPIO ピン配置　参考
+### ラズパイGPIO ピン配置　参考
 
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
 
