@@ -43,7 +43,7 @@ $ sudo reboot
 		       majocairis_pins: majocairis_pins {
 				// 使用するピンとout/inの定義
 				brcm,pins     = <21 22 23 24 5 6 13 19 26 12 16 20>;
-				brcm,function = <1 1  1 1 1 1  1  1  1  1  1  1>; /* 1:out 0:in */
+				brcm,function = <1   1  1  1 1 1  1  1  1  1  1  1>; /* 1:out 0:in */
 			};
 		};
 	};
