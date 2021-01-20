@@ -153,7 +153,7 @@ sudo mousepad /boot/config.txt
 
 
 
-# /boot/config.txt の最後に、下記を追加します。【忘れずに！（最初ここに書き忘れました）】
+# /boot/config.txt の最後に、下記1行を追加します。【忘れずに！（最初ここに書き忘れました）】
 
 dtoverlay=majocairis,debug=1
 
