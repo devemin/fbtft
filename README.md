@@ -68,9 +68,9 @@ DB6:	16
 DB7:	20
 
 LCD pin
-1	-	GND	(GND)
+1	-	(GND)
 2	-	reset	(ラズパイ	gpio-21)
-3	-	GND	(GND)
+3	-	(GND)
 4	-	DB0	(ラズパイ	gpio-5)
 5	-	DB1	(ラズパイ	gpio-6)
 6	-	DB2	(ラズパイ	gpio-13)
@@ -79,8 +79,8 @@ LCD pin
 9	-	DB5	(ラズパイ	gpio-12)
 10	-	DB6	(ラズパイ	gpio-16)
 11	-	DB7	(ラズパイ	gpio-20)
-12	-	GND	(GND)
-13	-	RD	(3.3V	へ！)
+12	-	(GND)
+13	-	RD	(3.3V へ！)
 14	-	WR	(ラズパイ	gpio-23)
 15	-	CS	(ラズパイ	gpio-24)
 16	-	DC	(ラズパイ	gpio-22)
@@ -89,7 +89,7 @@ LCD pin
 19	-	VDDIO	(3.3V)
 20	-	LED+	(茶フレキ基板液晶なら5.5V～、みどり基板液晶なら12V～)
 21	-	LED-	(GND)
-22	-	GND	(GND)
+22	-	(GND)
 
 ```
 
