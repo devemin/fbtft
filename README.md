@@ -93,22 +93,14 @@ LCD pin
 
 ```
 
-<BR>
-<BR>
 
 ### 配線の様子
 
 ![GPIO pinout](img/layout.jpg)
 
-<BR>
-<BR>
-
 ### GPIO ピン配置　参考
 
 →　https://deviceplus.jp/hobby/raspberrypi4_04/
-
-<BR>
-<BR>
 
 ### 細長液晶側のピン配置
 
