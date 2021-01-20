@@ -175,6 +175,10 @@ sudo reboot now
 
 ```
 # ドライバをロード
+cd fbtft
+chmod +x ./majoins.sh
+chmod +x ./majorm.sh
+
 ./majoins.sh
 
 # gpioの接続が正しければ、液晶が暗転します。
