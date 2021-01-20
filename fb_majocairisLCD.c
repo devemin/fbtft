@@ -16,7 +16,6 @@
 #include <linux/init.h>
 #include <linux/delay.h>
 #include <video/mipi_display.h>
-#include <linux/gpio/consumer.h>
 
 #include "fbtft.h"
 
@@ -120,63 +119,6 @@ static int set_var(struct fbtft_par *par)
 	return 0;
 }
 
-
-
-static int fbtft_write_gpio8_wr_majoca(struct fbtft_par* par, void* buf, size_t len)
-{
-	//pr_info("majoca fbtft_write_gpio8_wr in fbtft-io.c");
-
-	u8 data;
-	int i;
-#ifndef DO_NOT_OPTIMIZE_FBTFT_WRITE_GPIO
-	static u8 prev_data;
-#endif
-
-	fbtft_par_dbg_hex(DEBUG_WRITE, par, par->info->device, u8, buf, len,
-		"%s(len=%zu): ", __func__, len);
-
-	while (len--) {
-		data = *(u8*)buf;
-
-		/* Start writing by pulling down /WR */
-		gpiod_set_value(par->gpio.wr, 0);
-
-		/* Set data */
-#ifndef DO_NOT_OPTIMIZE_FBTFT_WRITE_GPIO
-		if (data == prev_data) {
-			gpiod_set_value(par->gpio.wr, 0); /* used as delay */
-		}
-		else {
-			for (i = 0; i < 8; i++) {
-				if ((data & 1) != (prev_data & 1))
-					gpiod_set_value(par->gpio.db[i],
-						data & 1);
-				data >>= 1;
-				prev_data >>= 1;
-			}
-		}
-#else
-		for (i = 0; i < 8; i++) {
-			gpiod_set_value(par->gpio.db[i], data & 1);
-			data >>= 1;
-		}
-#endif
-
-		/* Pullup /WR */
-		gpiod_set_value(par->gpio.wr, 1);
-
-#ifndef DO_NOT_OPTIMIZE_FBTFT_WRITE_GPIO
-		prev_data = *(u8*)buf;
-#endif
-		buf++;
-	}
-
-	return 0;
-}
-
-
-
-
 /*
  * Gamma string format:
  *  Positive: Par1 Par2 [...] Par15
@@ -210,7 +152,7 @@ static struct fbtft_display display = {
 	.gamma_len = 15,
 	.gamma = DEFAULT_GAMMA,
 	.fbtftops = {
-		.write = fbtft_write_gpio8_wr_majoca,
+		.write = fbtft_write_gpio8_wr,
 		.init_display = init_display,
 		.set_addr_win = set_addr_win,
 		//.set_var = set_var,
