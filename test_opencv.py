@@ -28,8 +28,9 @@ f = open('/dev/fb1', 'wb')
 
 while(True):
     ret, frame = capture.read()
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) # cv2の画像はBGRなのでRGBに変換
-    image = Image.fromarray(frame)
+    frame_copy = frame
+    frame_copy = cv2.cvtColor(frame_copy, cv2.COLOR_BGR2RGB) # cv2の画像はBGRなのでRGBに変換
+    image = Image.fromarray(frame_copy)
     img_resize = image.resize((width, height))
     draw = ImageDraw.Draw(img_resize)
 
