@@ -275,9 +275,9 @@ https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 ## fbtest　（描画のベンチマーク）
 
 ```
+sudo apt-get install libnetpbm10-dev
 git clone https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
 cd fbtest
-sudo apt-get install libnetpbm10-dev
 make -j4
 ./fbtest -f /dev/fb1
 ```
