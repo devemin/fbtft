@@ -132,7 +132,7 @@ dtc -I dts -O dtb -o majocairis.dtbo majocairis.dts
 sudo cp majocairis.dtbo /boot/overlays/
 
 sudo mousepad /boot/config.txt
-#sudo leafpad /boot/config.txt
+#または、 sudo leafpad /boot/config.txt
 
 # /boot/config.txt の最後に、下記を追加します。
 dtoverlay=majocairis,debug=1
