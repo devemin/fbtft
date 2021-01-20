@@ -200,7 +200,10 @@ lsmod | grep fb
 ./majorm.sh
 
 # 再起動すると登録は解除されます。必要な場合は、スクリプト起動時実行を設定しましょう。
+
 ```
+
+動作確認する際は、下の方に書いてある fbtest が良いと思います。
 
 <BR>
 <BR>
@@ -269,9 +272,7 @@ https://qiita.com/kitazaki/items/9f6119d7dc21cd29268e
 <BR>
 <BR>
 
-## fbtest　（描画テスト）
-
-このあたりのページが参考になります。
+## fbtest　（描画のベンチマーク）
 
 ```
 git clone https://git.kernel.org/pub/scm/linux/kernel/git/geert/fbtest.git
