@@ -53,7 +53,7 @@ https://twitter.com/devemin/status/1351338649116311552
 # マジョカアイリスLCD の配線
 
 ```
-LCD :	ラズパイ
+(LCD :	ラズパイ)
 reset:	21
 DC:	22
 WR:	23
@@ -66,6 +66,31 @@ DB4:	26
 DB5:	12
 DB6:	16
 DB7:	20
+
+LCD pin
+1	-	GND	(GND)
+2	-	reset	(ラズパイ	gpio-21)
+3	-	GND	(GND)
+4	-	DB0	(ラズパイ	gpio-5)
+5	-	DB1	(ラズパイ	gpio-6)
+6	-	DB2	(ラズパイ	gpio-13)
+7	-	DB3	(ラズパイ	gpio-19)
+8	-	DB4	(ラズパイ	gpio-26)
+9	-	DB5	(ラズパイ	gpio-12)
+10	-	DB6	(ラズパイ	gpio-16)
+11	-	DB7	(ラズパイ	gpio-20)
+12	-	GND	(GND)
+13	-	RD	(3.3V	へ！)
+14	-	WR	(ラズパイ	gpio-23)
+15	-	CS	(ラズパイ	gpio-24)
+16	-	DC	(ラズパイ	gpio-22)
+17	-	TE	(未配線)
+18	-	VDD	(3.3V)
+19	-	VDDIO	(3.3V)
+20	-	LED+	(茶フレキ基板液晶なら5.5V～、みどり基板液晶なら12V～)
+21	-	LED-	(GND)
+22	-	GND	(GND)
+
 ```
 
 <BR>
@@ -87,7 +112,7 @@ DB7:	20
 
 ### 細長液晶側のピン配置
 
-→　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
+参考→　https://github.com/htlabnet/inside_magimajopures/blob/main/640x48_LCD_ESP32/640x48_LCD_ESP32.ino
 
 <BR>
 <BR>
