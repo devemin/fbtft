@@ -55,9 +55,9 @@ https://twitter.com/devemin/status/1351338649116311552
 ```
 (LCD :	ラズパイ)
 reset:	21
-DC:	22
 WR:	23
 CS:	24
+DC:	22
 DB0:	5
 DB1:	6
 DB2:	13
