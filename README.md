@@ -4,17 +4,12 @@
 
 フレームバッファとして使えるようになります。
 
-（カーネルのバージョンによって2種に別れてしまったので、`uname -r` コマンドでご自身のバージョンを確認し、使うブランチを選んでください。）
+（カーネル5.4 からfbtft の構成が大きく変わりましたが、これは5.x でも 4.x でもOKです。）
 
 <BR>
 <BR>
 
 # 動いてる様子
-
-
-### ブランチ master　(kernel 5.4 用) 
-
-(Raspberry Pi OS , 2021-1-11 リリースで動作確認したものです。**描画が速くなってます。**)
 
 ![Test Image 4](img/image4.jpg)
 
@@ -35,32 +30,6 @@ https://twitter.com/devemin/status/1351187167314325506
 https://twitter.com/devemin/status/1351338649116311552
 
 
-
-### ブランチ for4.x　 (kernel 4.x 用)　→　https://github.com/devemin/fbtft/tree/for4.x
-
- (4.x カーネル版用で、描画遅いです。)
-
-
-
-
-https://twitter.com/devemin/status/1349725112660946947
-
-https://twitter.com/devemin/status/1349741702236364807
-
-https://twitter.com/devemin/status/1349736972139388929
-
-https://twitter.com/devemin/status/1349763128960053250
-
-
-<BR>
-<BR>
-
-### kernel バージョン確認方法
-
-```
-uname -r
-```
-
 <BR>
 <BR>
 
@@ -71,7 +40,8 @@ uname -r
 
 ラズパイ3B+ /  2021-1-11 released Raspberry Pi OS, カーネル 5.4.83-v7+
 
-（2019/4/8 release のラズパイimage(stretch, kernel 4.14) では、ビルドが通ってもデバイス認識できませんでした。for 4.x ブランチを使ってください。）
+ラズパイ3B+ /  2019-4-8 released Raspian OS, カーネル 4.14.98-v7+
+
 
 <BR>
 <BR>
@@ -80,7 +50,7 @@ uname -r
 # HOWTO
 
 
-# マジョカアイリスLCD の配線 (5.4 用)
+# マジョカアイリスLCD の配線
 
 ```
 LCD :	ラズパイ
@@ -97,8 +67,6 @@ DB5:	12
 DB6:	16
 DB7:	20
 ```
-
-（4.x 系ブランチの配線とは変わってるので注意です。4.x 系はそちらのブランチの表示を参考にしてください）
 
 <BR>
 <BR>
