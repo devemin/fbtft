@@ -50,7 +50,7 @@ https://twitter.com/devemin/status/1351338649116311552
 # HOWTO
 
 
-# マジョカアイリスLCD の配線
+# LCD とラズパイの配線
 
 ```
 (LCD :	ラズパイ)
