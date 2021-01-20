@@ -18,23 +18,36 @@ width=640
 height=48
 rotation = 0
 
+#縮小する幅サイズ
+scale_width = 48
+
 fbbuffer = bytearray(640*48*2)
 
+background = Image.new("RGB", (width, height), (255,255,255))
 
 # VideoCapture オブジェクトを取得します
 capture = cv2.VideoCapture(0)
 
 f = open('/dev/fb1', 'wb')
 
-while(True):
-    ret, frame = capture.read()
-    frame_copy = frame
-    frame_copy = cv2.cvtColor(frame_copy, cv2.COLOR_BGR2RGB) # cv2の画像はBGRなのでRGBに変換
-    image = Image.fromarray(frame_copy)
-    img_resize = image.resize((width, height))
-    draw = ImageDraw.Draw(img_resize)
+scale_cnt = 0
+scale_max = 300
 
-    imgdata = img_resize.getdata()
+while(True):
+    scale_width_now = scale_width + scale_cnt
+
+    ret, frame = capture.read()
+    frame_copy = frame.copy()
+    frame_copy = cv2.cvtColor(frame_copy, cv2.COLOR_BGR2RGB) # cv2の画像はBGRなのでRGBに変換
+    camimage = Image.fromarray(frame_copy)
+    img_resize = camimage.resize((scale_width_now, height))
+
+    bg_copy = background.copy()
+    bg_copy.paste(img_resize, (int(width/2)-int(scale_width_now/2), 0))
+
+    draw = ImageDraw.Draw(bg_copy)
+
+    imgdata = bg_copy.getdata()
 
     for y in range(height):
         for x in range(width):
@@ -49,6 +62,9 @@ while(True):
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+    scale_cnt = scale_cnt + 10
+    if (scale_cnt >= scale_max):
+        scale_cnt = 0
 
 f.close()
 
