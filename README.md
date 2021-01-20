@@ -215,11 +215,18 @@ https://github.com/devemin/fbtft/blob/master/test_sushi.py
 
 （冒頭の画像。Python で描画遅いです）
 
+```
+python3 test_sushi.py
+```
+
 
 #### Python x OpenCV x PIL で USBカメラ画像を細長液晶に映す（カメラ画像が横長に表示されますｗ）
 
 https://github.com/devemin/fbtft/blob/master/test_opencv.py
 
+```
+python3 test_opencv.py
+```
 
 #### C でframebuffer （四角を描画するだけ）
 
@@ -227,6 +234,7 @@ https://github.com/devemin/fbtft/blob/master/test_fbcpp.cpp
 
 ```
 g++ test_fbcpp.cpp
+./a.out
 
 #参考：https://qiita.com/iwatake2222/items/0a7a2fefec9d93cdf6db
 ```
