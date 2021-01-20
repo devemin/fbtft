@@ -1,4 +1,4 @@
-# Driver for majoca Iris LCD (mod)
+# Driver for majoca Iris LCD (fbtft mod)
 
 マジョカアイリスLCD の ラズパイ用 mod ドライバーです。
 
