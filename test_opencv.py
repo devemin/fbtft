@@ -52,7 +52,7 @@ while(True):
     for y in range(height):
         for x in range(width):
             testdata = color565(imgdata[y*width+x])
-            fbbuffer[(y*width+x)*2    ] = testdata & 0x0F
+            fbbuffer[(y*width+x)*2    ] = testdata & 0xFF
             fbbuffer[(y*width+x)*2 +1 ] = testdata >> 8
     data = f.write(fbbuffer)
     f.seek(0)
