@@ -96,7 +96,14 @@ LCD pin
 ### Pin 配置画像
 ![pinout.jpg](img/pinout.jpg)
 
+
+
 Thanks!! [Twitter @Komikoni](https://twitter.com/komikoni/status/1351912127959687169)
+
+（CC BY-SA の公式画像を修正されたもの）
+
+https://www.raspberrypi.org/documentation/usage/gpio/
+
 
 
 ### 配線の様子
