@@ -79,10 +79,10 @@ LCD pin
 9	-	DB5	(ラズパイ	gpio-12)
 10	-	DB6	(ラズパイ	gpio-16)
 11	-	DB7	(ラズパイ	gpio-20)
-12	-	(GND)
+12	-	(GND)　 (補足：　どうやらパネル先端半分側のCSだったようです。単体使用ならGND で OK)
 13	-	RD	(3.3V へ！)
 14	-	WR	(ラズパイ	gpio-23)
-15	-	CS	(ラズパイ	gpio-24)
+15	-	CS	(ラズパイ	gpio-24)　（補足：　どうやらパネルコネクタ側半分側のCSだったようです。）
 16	-	DC	(ラズパイ	gpio-22)
 17	-	TE	(未配線)
 18	-	VDD	(3.3V)
@@ -92,6 +92,13 @@ LCD pin
 22	-	(GND)
 
 ```
+
+補足：　12 / 15 pin は、どうやらそれぞれパネル半分ずつを制御するCS pin だったようです。
+
+今回の単体使用であれば、12pin GND で使えています。
+
+https://twitter.com/lovyan03/status/1354724044336111617?s=20
+
 
 ### Pin 配置画像
 ![pinout.jpg](img/pinout.jpg)
