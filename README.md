@@ -42,6 +42,7 @@ https://twitter.com/devemin/status/1351338649116311552
 
 ラズパイ3B+ /  2019-4-8 released Raspian OS, カーネル 4.14.98-v7+
 
+（ラズパイ Zero W / Raspberry Pi OS Lite でも動作したのことです。 @lutecia16v さん、ありがとうございます。）
 
 <BR>
 <BR>
