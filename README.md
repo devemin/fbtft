@@ -200,6 +200,7 @@ chmod +x ./majorm.sh
 
 lsmod | grep fb
 
+
 # チェックするコマンド
 # ロードされていれば、/dev/fb1 が今回のLCDとして表れます。
 # /dev/fb0 は液晶等、通常の画面です。
